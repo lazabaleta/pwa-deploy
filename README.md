@@ -1,5 +1,7 @@
 # Pec4-2
 
+Pwa example deployed at https://lazabaleta.github.io/pwa-deploy/pwa-deploy/
+
 Using API https://fakestoreapi.com/
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.
