@@ -11,7 +11,6 @@ export interface Product {
   category: string;
   image: string;
   rating: ProductRating;
-  // Extra fields for richer UI/demo
   featured?: boolean;
   origin?: string;
 }

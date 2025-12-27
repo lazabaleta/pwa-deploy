@@ -1,6 +1,8 @@
-# Pec42
+# Pec4-2
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
+Using API https://fakestoreapi.com/
+
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.
 
 ## Development server
 

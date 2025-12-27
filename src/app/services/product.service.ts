@@ -15,7 +15,6 @@ export class ProductService {
       map((items) =>
         items.map((item, idx) => ({
           ...item,
-          // Enriquecemos algunos campos para la UI
           featured: idx % 3 === 0,
           origin: ['USA', 'EU', 'ASIA'][idx % 3],
         }))
