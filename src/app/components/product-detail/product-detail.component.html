@@ -1,0 +1,74 @@
+<section class="topbar">
+  <div>
+    <p class="eyebrow">Product detail</p>
+    <h2>{{ product()?.title }}</h2>
+  </div>
+  <button mat-stroked-button color="primary" (click)="back()">
+    <mat-icon aria-hidden="true">arrow_back</mat-icon>
+    Back
+  </button>
+</section>
+
+@if (loading()) {
+  <div class="loading">
+    <mat-progress-spinner diameter="56" mode="indeterminate"></mat-progress-spinner>
+    <p>Recuperando producto...</p>
+  </div>
+} @else if (product()) {
+  <section class="layout fade-in">
+    <div class="media">
+      <img [src]="product()!.image" [alt]="product()!.title" />
+      <p class="price">\${{ product()!.price }}</p>
+      <p class="muted">Category: {{ product()!.category }}</p>
+      <p class="muted">Origin: {{ product()!.origin || 'Unknown' }}</p>
+      <p class="muted">Rating: {{ product()!.rating.rate }} ({{ product()!.rating.count }})</p>
+    </div>
+
+    <div class="detail">
+      <p class="description">{{ product()!.description }}</p>
+
+      <button mat-raised-button color="primary" (click)="toggleDetails()">
+        @if (showDetails()) { Hide all details } @else { Show all details }
+      </button>
+
+      @if (showDetails()) {
+        <mat-accordion class="extra">
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>Full specs</mat-panel-title>
+              <mat-panel-description>Data from API + extra</mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="grid">
+              <div>
+                <p class="label">ID</p>
+                <p>{{ product()!.id }}</p>
+              </div>
+              <div>
+                <p class="label">Featured</p>
+                <p>{{ product()!.featured ? 'Yes' : 'No' }}</p>
+              </div>
+              <div>
+                <p class="label">Origin</p>
+                <p>{{ product()!.origin || 'Unknown' }}</p>
+              </div>
+              <div>
+                <p class="label">Price</p>
+                <p>\${{ product()!.price }}</p>
+              </div>
+              <div>
+                <p class="label">Category</p>
+                <p>{{ product()!.category }}</p>
+              </div>
+              <div>
+                <p class="label">Rating</p>
+                <p>{{ product()!.rating.rate }} ({{ product()!.rating.count }})</p>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      }
+    </div>
+  </section>
+} @else {
+  <p>No se encontró el producto.</p>
+}

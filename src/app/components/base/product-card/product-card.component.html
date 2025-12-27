@@ -1,0 +1,21 @@
+<mat-card class="product-card" (click)="openDetail()">
+  <mat-card-header>
+    <div mat-card-avatar class="avatar" [class.featured]="product.featured"></div>
+    <mat-card-title>{{ product.title }}</mat-card-title>
+    <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="product.image" [alt]="product.title" />
+  <mat-card-content>
+    <p class="price">\${{ product.price }}</p>
+    <p class="rating">
+      <mat-icon aria-hidden="true">star_rate</mat-icon>
+      {{ product.rating.rate }} ({{ product.rating.count }})
+    </p>
+    <p class="origin">@if (product.origin) { Origin: {{ product.origin }} }</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-stroked-button color="primary" (click)="openDetail(); $event.stopPropagation()">
+      View details
+    </button>
+  </mat-card-actions>
+</mat-card>

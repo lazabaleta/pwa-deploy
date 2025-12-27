@@ -1,0 +1,47 @@
+<section class="header">
+  <div>
+    <h1>Pwa Store</h1>
+    <p class="muted">Listado con API pública y vistas cards / tabla.</p>
+  </div>
+  <div class="actions">
+    <button
+      mat-icon-button
+      [color]="viewMode() === 'cards' ? 'primary' : undefined"
+      (click)="setView('cards')"
+      aria-label="Ver como cards"
+    >
+      <mat-icon>grid_view</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      [color]="viewMode() === 'table' ? 'primary' : undefined"
+      (click)="setView('table')"
+      aria-label="Ver como tabla"
+    >
+      <mat-icon>table_rows</mat-icon>
+    </button>
+  </div>
+</section>
+
+<section class="content">
+  @if (loading()) {
+    <div class="loading">
+      <mat-progress-spinner diameter="64" mode="indeterminate"></mat-progress-spinner>
+      <p>Cargando productos...</p>
+    </div>
+  } @else {
+    <p class="muted">Total: {{ totalProducts() }}</p>
+
+    @if (viewMode() === 'cards') {
+      <div class="cards fade-in">
+        @for (product of products(); track product.id) {
+          <app-product-card [product]="product" (open)="openDetail($event)"></app-product-card>
+        }
+      </div>
+    } @else {
+      <div class="fade-in">
+        <app-product-grid [products]="products()" (open)="openDetail($event)"></app-product-grid>
+      </div>
+    }
+  }
+</section>
